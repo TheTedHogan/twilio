@@ -33,11 +33,10 @@
 (defn encode-url [url]
   (URLEncoder/encode url))
 
-(defn make-request-url [endpoint]
-  (format "%s/Accounts/%s/SMS/%s.json"
+(defn make-request-url []
+  (format "%s/Accounts/%s/Messages.json"
     base
-    *sid*
-    endpoint))
+    *sid*))
 
 ;; HTTP requests
 
@@ -83,7 +82,7 @@
 (defn send-sms
   "Send an SMS message which is a map in the form {:From x :To x :Body x}"
   [params]
-  (let [url (make-request-url "Messages")]
+  (let [url (make-request-url)]
     (request :post url params)))
 
 ;; *************************************************
@@ -91,7 +90,7 @@
 (defn get-messages
   "Fetch all messages sent from your account"
   []
-  (if-let [response (request :get (make-request-url "Messages"))]
+  (if-let [response (request :get (make-request-url))]
     (get-in response [:body :sms_messages])))
 
 (defn verify-phone
