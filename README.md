@@ -2,8 +2,10 @@
 
 Twilio SMS library for Clojure. Available from Clojars.
 
+[![Clojars Project](http://clojars.org/twilio-api/latest-version.svg)](http://clojars.org/twilio-api)
+
 ```
-[twilio-api "1.0.0"]
+[twilio-api "1.0.1"]
 ```
 
 Twilio is a really neat service that lets you send SMS messages from your web apps.
