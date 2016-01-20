@@ -5,8 +5,6 @@
 
 (def base "https://api.twilio.com/2010-04-01")
 
-;; Authentication info
-
 (def ^:dynamic *sid*   "")
 (def ^:dynamic *token* "")
 
@@ -22,8 +20,6 @@
     (with-open [r (clojure.java.io/reader "config.clj")]
       (read (java.io.PushbackReader. r)))))
 
-;; Helper macro
-
 (defmacro with-auth
   [account_sid auth_token & body]
   `(binding [*sid* ~account_sid
@@ -37,8 +33,6 @@
   (format "%s/Accounts/%s/Messages.json"
     base
     *sid*))
-
-;; HTTP requests
 
 (defn request
   "Make a simple POST request to the API"
@@ -55,8 +49,6 @@
       {:error e}))))
 
 (deftype SMS [from to body])
-
-;; Utils
 
 (def twilio-format-key
   (comp keyword str/capitalize name))
@@ -76,16 +68,11 @@
      :to to
      :from from}))
 
-;; Send an SMS message via Twilio
-;; *************************************************
-
 (defn send-sms
   "Send an SMS message which is a map in the form {:From x :To x :Body x}"
   [params]
   (let [url (make-request-url)]
     (request :post url params)))
-
-;; *************************************************
 
 (defn get-messages
   "Fetch all messages sent from your account"
