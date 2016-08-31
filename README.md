@@ -39,7 +39,7 @@ Since uppercase key names hurt my eyes, there's a helper function to make things
 
 ```clojure
 (def my-sms-message
-  (sms "+442033222504" ;; from
+  (twilio/sms "+442033222504" ;; from
        "+447846012894" ;; to
        "OH HAI!"))     ;; message
 
